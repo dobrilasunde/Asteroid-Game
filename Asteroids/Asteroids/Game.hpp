@@ -18,7 +18,9 @@ public:
 	void AddSprite(class SpriteComponent* sprite);
 	void RemoveSprite(class SpriteComponent* sprite);
 
-
+	void AddAsteroid(class Asteroid* ast);
+	void RemoveAsteroid(class Asteroid* ast);
+	std::vector<class Asteroid*>& GetAsteroids() { return mAsteroids; }
 
 	SDL_Texture* GetTexture(const std::string& fileName);
 
@@ -43,5 +45,5 @@ private:
 	bool mUpdatingActors;
 
 	class Ship* mShip;
-
+	std::vector<class Asteroid*> mAsteroids;
 };

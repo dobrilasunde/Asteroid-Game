@@ -122,10 +122,9 @@ void Game::UpdateGame()
 
 void Game::GenerateOutput()
 {
-	SDL_SetRenderDrawColor(mRenderer, 220, 220, 220, 255);
+	SDL_SetRenderDrawColor(mRenderer, 42, 45, 51, 255);
 	SDL_RenderClear(mRenderer);
 
-	// Draw all sprite components
 	for (auto sprite : mSprites)
 	{
 		sprite->Draw(mRenderer);
@@ -149,7 +148,17 @@ void Game::LoadData()
 
 void Game::UnloadData()
 {
+	while (!mActors.empty())
+	{
+		delete mActors.back();
+	}
 
+	for (auto i : mTextures)
+	{
+		SDL_DestroyTexture(i.second);
+	}
+
+	mTextures.clear();
 }
 
 SDL_Texture* Game::GetTexture(const std::string& fileName)
@@ -241,4 +250,18 @@ void Game::RemoveSprite(SpriteComponent* sprite)
 {
 	auto iter = std::find(mSprites.begin(), mSprites.end(), sprite);
 	mSprites.erase(iter);
+}
+
+void Game::AddAsteroid(Asteroid* ast)
+{
+	mAsteroids.emplace_back(ast);
+}
+
+void Game::RemoveAsteroid(Asteroid* ast)
+{
+	auto iter = std::find(mAsteroids.begin(), mAsteroids.end(), ast);
+	if (iter != mAsteroids.end())
+	{
+		mAsteroids.erase(iter);
+	}
 }

@@ -12,6 +12,8 @@
     <ClCompile Include="Random.cpp" />
     <ClCompile Include="InputComponent.cpp" />
     <ClCompile Include="Ship.cpp" />
+    <ClCompile Include="CircleComponent.cpp" />
+    <ClCompile Include="Laser.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Game.hpp" />
@@ -24,5 +26,7 @@
     <ClInclude Include="Random.hpp" />
     <ClInclude Include="InputComponent.hpp" />
     <ClInclude Include="Ship.hpp" />
+    <ClInclude Include="CircleComponent.hpp" />
+    <ClInclude Include="Laser.hpp" />
   </ItemGroup>
 </Project>

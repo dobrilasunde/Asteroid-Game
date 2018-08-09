@@ -4,6 +4,7 @@
 #include"Random.hpp"
 #include"SpriteComponent.hpp"
 #include"MoveComponent.hpp"
+#include"CircleComponent.hpp"
 
 Asteroid::Asteroid(Game* game) : Actor(game)
 {
@@ -15,9 +16,14 @@ Asteroid::Asteroid(Game* game) : Actor(game)
 	sc->SetTexture(game->GetTexture("Assets/Asteroid.png"));
 	MoveComponent* mc = new MoveComponent(this);
 	mc->SetForwardSpeed(150.0f);
+
+	mCircle = new CircleComponent(this);
+	mCircle->SetRadius(40.0f);
+
+	game->AddAsteroid(this);
 }
 
 Asteroid::~Asteroid()
 {
-	
+	GetGame()->RemoveAsteroid(this);
 }
