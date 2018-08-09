@@ -4,6 +4,7 @@
 #include "Actor.hpp"
 #include "SpriteComponent.hpp"
 #include "Asteroid.hpp"
+#include"Ship.hpp"
 
 Game::Game() :mWindow(nullptr), mRenderer(nullptr), mIsRunning(true), mUpdatingActors(false) {}
 
@@ -135,6 +136,10 @@ void Game::GenerateOutput()
 
 void Game::LoadData()
 {
+	mShip = new Ship(this);
+	mShip->SetPosition(Vector2(512.0f, 384.0f));
+	mShip->SetRotation(Math::PiOver2);
+
 	const int numAsteroids = 20;
 	for (int i = 0; i < numAsteroids; ++i)
 	{

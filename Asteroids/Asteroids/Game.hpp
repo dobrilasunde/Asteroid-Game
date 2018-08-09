@@ -18,6 +18,8 @@ public:
 	void AddSprite(class SpriteComponent* sprite);
 	void RemoveSprite(class SpriteComponent* sprite);
 
+
+
 	SDL_Texture* GetTexture(const std::string& fileName);
 
 private:
@@ -39,5 +41,7 @@ private:
 	Uint32 mTicksCount;
 	bool mIsRunning;
 	bool mUpdatingActors;
+
+	class Ship* mShip;
 
 };
