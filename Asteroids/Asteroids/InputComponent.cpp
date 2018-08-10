@@ -1,7 +1,10 @@
 #include"InputComponent.hpp"
 #include"Actor.hpp"
 
-InputComponent::InputComponent(Actor* owner): MoveComponent(owner), mForwardKey(0), mBackKey(0), mClockwiseKey(0), mCounterClockwiseKey(0) {}
+InputComponent::InputComponent(Actor* owner): MoveComponent(owner), mForwardKey(0), mBackKey(0), mClockwiseKey(0), mCounterClockwiseKey(0) 
+{
+	SetMass(5.0f);
+}
 
 void InputComponent::ProcessInput(const uint8_t* keyState)
 {
@@ -14,7 +17,9 @@ void InputComponent::ProcessInput(const uint8_t* keyState)
 	{
 		forwardSpeed -= mMaxForwardSpeed;
 	}
-	SetForwardSpeed(forwardSpeed);
+	AddForce(mOwner->GetForward()*forwardSpeed);
+	//SetForwardSpeed(forwardSpeed);
+	
 
 	float angularSpeed = 0.0f;
 	if (keyState[mClockwiseKey])

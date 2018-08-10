@@ -7,18 +7,18 @@
 #include"Asteroid.hpp"
 #include<iostream>
 
-Ship::Ship(Game* game) : Actor(game), mLaserCooldown(0.0f), mSeconds(-1), mDisappear(false)
+Ship::Ship(Game* game) : Actor(game), mLaserCooldown(0.0f)
 {
 	SpriteComponent* sc = new SpriteComponent(this, 150);
 	sc->SetTexture(game->GetTexture("Assets/Ship.png"));
 
-	InputComponent* ic = new InputComponent(this);
-	ic->SetForwardKey(SDL_SCANCODE_W);	
-	ic->SetBackKey(SDL_SCANCODE_S);
-	ic->SetClockwiseKey(SDL_SCANCODE_A);
-	ic->SetCounterClockwiseKey(SDL_SCANCODE_D);
-	ic->SetMaxForwardSpeed(300.0f);
-	ic->SetMaxAngularSpeed(Math::TwoPi);
+	mInput = new InputComponent(this);
+	mInput->SetForwardKey(SDL_SCANCODE_W);	
+	mInput->SetBackKey(SDL_SCANCODE_S);
+	mInput->SetClockwiseKey(SDL_SCANCODE_A);
+	mInput->SetCounterClockwiseKey(SDL_SCANCODE_D);
+	mInput->SetMaxForwardSpeed(300.0f);
+	mInput->SetMaxAngularSpeed(Math::TwoPi);
 
 	mCircle = new CircleComponent(this);
 	mCircle->SetRadius(50.0f);
@@ -34,6 +34,8 @@ void Ship::UpdateActor(float deltaTime)
 		{
 			SetPosition(Vector2(512.0f, 384.0f));
 			SetRotation(Math::PiOver2);
+			mInput->SetVelocity(Vector2::Zero);
+			break;
 		}
 	}
 }

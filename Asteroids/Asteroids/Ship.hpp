@@ -15,6 +15,5 @@ public:
 private:
 	float mLaserCooldown;
 	class CircleComponent* mCircle;
-	float mSeconds;
-	bool mDisappear;
+	class InputComponent* mInput;
 };
